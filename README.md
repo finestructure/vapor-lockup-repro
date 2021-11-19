@@ -9,7 +9,7 @@ The `Makefile` contains some basic commands we'll use to trigger the lockup.
 ## Prerequisites
 
 - docker to bring up the local PG database
-- `rester`, a [API scripting tool](https://github.com/finestructure/rester)
+- `rester`, an [API scripting tool](https://github.com/finestructure/rester)
 
 Installation of Rester either via
 
