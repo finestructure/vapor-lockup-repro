@@ -11,3 +11,15 @@ reset-db: db-down db-up migrate
 
 run:
 	swift run Run serve
+
+routes:
+	swift run Run routes
+
+post:
+	env title=$$(date +'%Y%m%d-%H%M%S') rester --loop 0 restfiles/post.restfile
+
+get:
+	rester --loop 0 restfiles/get.restfile
+
+dump:
+	PGPASSWORD=xxx pg_dump --no-owner -Fc -h localhost -p 7432 -U spi_dev spi_dev > local_db.dump

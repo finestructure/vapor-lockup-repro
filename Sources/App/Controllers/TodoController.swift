@@ -12,7 +12,9 @@ struct TodoController: RouteCollection {
     }
 
     func index(req: Request) throws -> EventLoopFuture<[Todo]> {
-        return Todo.query(on: req.db).all()
+        return Todo.query(on: req.db)
+            .limit(50)
+            .all()
     }
 
     func create(req: Request) throws -> EventLoopFuture<Todo> {

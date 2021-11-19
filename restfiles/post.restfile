@@ -1,0 +1,12 @@
+variables:
+  base_url: http://localhost:8080
+
+requests:
+  post:
+    url: ${base_url}/todos
+    method: POST
+    body:
+      json:
+        title: ${title}
+    validation:
+      status: 200
