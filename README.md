@@ -58,7 +58,7 @@ The error should manifest itself by first one and then the other terminals runni
 make: *** [get] Error 1
 ```
 
-At this point everything comes to a standstill and even opening the *static* page localhost:8080/ in a browser (which should simply display "It works!" without any db access) hangs and does not load.
+At this point everything comes to a standstill and even opening the *static* page http://localhost:8080/ in a browser (which should simply display "It works!" without any db access) hangs and does not load.
 
 If forcing the error proves to be problematic, running
 
