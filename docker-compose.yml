@@ -22,9 +22,9 @@ volumes:
 x-shared_environment: &shared_environment
   LOG_LEVEL: ${LOG_LEVEL:-debug}
   DATABASE_HOST: db
-  DATABASE_NAME: vapor_database
-  DATABASE_USERNAME: vapor_username
-  DATABASE_PASSWORD: vapor_password
+  DATABASE_NAME: spi_dev
+  DATABASE_USERNAME: spi_dev
+  DATABASE_PASSWORD: xxx
   
 services:
   app:
@@ -39,6 +39,7 @@ services:
       - '8080:8080'
     # user: '0' # uncomment to run as root for testing purposes even though Dockerfile defines 'vapor' user.
     command: ["serve", "--env", "production", "--hostname", "0.0.0.0", "--port", "8080"]
+
   migrate:
     image: pg-dump-repro:latest
     build:
@@ -50,6 +51,7 @@ services:
     command: ["migrate", "--yes"]
     deploy:
       replicas: 0
+
   revert:
     image: pg-dump-repro:latest
     build:
@@ -61,8 +63,9 @@ services:
     command: ["migrate", "--revert", "--yes"]
     deploy:
       replicas: 0
+
   db:
-    image: postgres:14-alpine
+    image: postgres:13.5-alpine
     volumes:
       - db_data:/var/lib/postgresql/data/pgdata
     environment:
@@ -71,4 +74,4 @@ services:
       POSTGRES_PASSWORD: vapor_password
       POSTGRES_DB: vapor_database
     ports:
-      - '5432:5432'
+      - '7432:5432'

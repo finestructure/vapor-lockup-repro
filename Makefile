@@ -1,5 +1,5 @@
 db-up:
-	docker run --name repro-db -e POSTGRES_DB=spi_dev -e POSTGRES_USER=spi_dev -e POSTGRES_PASSWORD=xxx -p 7432:5432 -d postgres:11.6-alpine
+	docker run --name repro-db -e POSTGRES_DB=spi_dev -e POSTGRES_USER=spi_dev -e POSTGRES_PASSWORD=xxx -p 7432:5432 -d postgres:13.5-alpine
 
 db-down:
 	docker rm -f repro-db
@@ -11,6 +11,15 @@ reset-db: db-down db-up migrate
 
 run:
 	swift run Run serve
+
+docker-build:
+	docker-compose build
+
+docker-build-arm:
+	docker build -t pg-dump-repro -f Dockerfile.arm .
+
+docker-run:
+	docker-compose up
 
 routes:
 	swift run Run routes

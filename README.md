@@ -67,3 +67,11 @@ make dump
 ```
 
 to `pg_dump` the database in parallel to the read and write jobs should do the trick.
+
+## WIP: docker-based repro
+
+```
+make docker-build-arm docker-run
+```
+
+(or use `make docker-build` on x86_64)
