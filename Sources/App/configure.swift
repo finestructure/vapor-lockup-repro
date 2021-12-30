@@ -17,6 +17,8 @@ public func configure(_ app: Application) throws {
 
     app.migrations.add(CreateTodo())
 
+    app.commands.use(Worker(), as: "worker")
+
     // register routes
     try routes(app)
 }
