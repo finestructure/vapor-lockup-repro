@@ -16,9 +16,11 @@ routes:
 	swift run Run routes
 
 post:
+	# while true ; do env title=$$(date +'%Y%m%d-%H%M%S') rester restfiles/post.restfile ; done
 	env title=$$(date +'%Y%m%d-%H%M%S') rester --loop 0 restfiles/post.restfile
 
 get:
+	# while true ; do rester restfiles/get.restfile ; done
 	rester --loop 0 restfiles/get.restfile
 
 dump:
