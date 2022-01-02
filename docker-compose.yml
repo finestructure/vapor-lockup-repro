@@ -40,7 +40,40 @@ services:
     # user: '0' # uncomment to run as root for testing purposes even though Dockerfile defines 'vapor' user.
     command: ["serve", "--env", "production", "--hostname", "0.0.0.0", "--port", "8080"]
 
-  worker:
+  worker-1:
+    image: pg-dump-repro:latest
+    environment:
+      <<: *shared_environment
+    depends_on:
+      - db
+    entrypoint: ["/bin/bash"]
+    command: ["-c", "--",
+      "trap : TERM INT; while true; do ./Run worker --limit 50; sleep 1; done"
+    ]
+
+  worker-2:
+    image: pg-dump-repro:latest
+    environment:
+      <<: *shared_environment
+    depends_on:
+      - db
+    entrypoint: ["/bin/bash"]
+    command: ["-c", "--",
+      "trap : TERM INT; while true; do ./Run worker --limit 50; sleep 1; done"
+    ]
+
+  worker-3:
+    image: pg-dump-repro:latest
+    environment:
+      <<: *shared_environment
+    depends_on:
+      - db
+    entrypoint: ["/bin/bash"]
+    command: ["-c", "--",
+      "trap : TERM INT; while true; do ./Run worker --limit 50; sleep 1; done"
+    ]
+
+  worker-4:
     image: pg-dump-repro:latest
     environment:
       <<: *shared_environment
